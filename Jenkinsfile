@@ -6,7 +6,7 @@ pipeline {
     }
     stages {
         
-        stage('Slack End Notification'){
+        stage('Slack start Notification'){
                steps {
                    slackSend baseUrl: 'https://hooks.slack.com/services/', 
                        channel: '#jenkins-build', 
