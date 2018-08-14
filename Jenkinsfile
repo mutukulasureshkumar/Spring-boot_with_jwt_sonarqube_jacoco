@@ -16,12 +16,21 @@ pipeline {
                 sh "mvn test"
         }
     }
-
           stage('deployment stage') {
               steps {
                 sh "mvn deploy"
         }
     }
+          stage('Slack Notification'){
+               steps {
+                   slackSend baseUrl: 'https://hooks.slack.com/services/', 
+                       channel: '#jenkins-build', 
+                       color: 'good', 
+                       message: 'Hi Greetings from Jenkins', 
+                       teamDomain: 'javahomecloud', 
+                       tokenCredentialId: 'slack-demo'
+            }
+        }
 
   }
 
