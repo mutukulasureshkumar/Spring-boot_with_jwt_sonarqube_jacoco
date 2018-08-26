@@ -32,11 +32,11 @@ pipeline {
                 sh " mvn sonar:sonar"
              }
     }
-          stage('deployment stage') {
+          /*stage('deployment stage') {
               steps {
                 sh "mvn deploy"
         }
-    }
+    }*/
           stage('Slack End Notification'){
                steps {
                    slackSend baseUrl: 'https://hooks.slack.com/services/', 
