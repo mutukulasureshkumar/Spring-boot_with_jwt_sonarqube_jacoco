@@ -112,73 +112,19 @@
 
 	<profiles>
 		<profile>
-			<id>prepare-for-sonar</id>
-
-			<properties>
-				<sonar.jacoco.reportPath>${project.build.directory}/jacoco-unit.exec</sonar.jacoco.reportPath>
-				<!-- Dumps all it coverage relative to root directory -->
-				<sonar.jacoco.itReportPath>${user.dir}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
-			</properties>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.5.7.201204190339</version>
-						<executions>
-							<execution>
-								<id>jacoco-unit</id>
-								<goals>
-									<goal>prepare-agent</goal>
-								</goals>
-								<configuration>
-									<propertyName>jacoco.agent.argLine</propertyName>
-									<destFile>${sonar.jacoco.reportPath}</destFile>
-								</configuration>
-							</execution>
-							<execution>
-								<id>jacoco-it</id>
-								<goals>
-									<goal>prepare-agent</goal>
-								</goals>
-								<configuration>
-									<propertyName>jacoco.itAgent.argLine</propertyName>
-									<destFile>${sonar.jacoco.itReportPath}</destFile>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<artifactId>maven-surefire-plugin</artifactId>
-							<configuration>
-								<argLine>${jacoco.agent.argLine}</argLine>
-							</configuration>
-						</plugin>
-
-						<plugin>
-							<artifactId>maven-failsafe-plugin</artifactId>
-							<configuration>
-								<argLine>${jacoco.itAgent.argLine}</argLine>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-		<profile>
-			<id>sonar</id>
-			<properties>
-				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-				<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-				<sonar.jacoco.reportPath>${project.build.directory}/jacoco-unit.exec</sonar.jacoco.reportPath>
-				<sonar.jacoco.itReportPath>${user.dir}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
-			</properties>
-		</profile>
+		      <id>sonar</id>
+		      <activation>
+			<activeByDefault>true</activeByDefault>
+		      </activation>
+		      <properties>
+			<sonar.host.url>http://localhost:9000</sonar.host.url>
+			<sonar.login>admin</sonar.login>
+			<sonar.projectName>JenkinsTest</sonar.projectName>
+			<sonar.projectVersion>1.0</sonar.projectVersion>
+			<sonar.test.exclusions>**/test/**/*.*</sonar.test.exclusions>
+			<sonar.exclusions>**/ai/**/*.*,**/jdbc/**/*.*,**/mpt/**/*.*,**/jcr/**/*.*,**/JDBC*</sonar.exclusions>
+		      </properties>
+		  </profile>			
 	</profiles>
 	
 	 <repositories>
