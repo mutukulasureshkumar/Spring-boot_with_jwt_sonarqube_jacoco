@@ -121,8 +121,8 @@
 			<sonar.key>JenkinsTestKey</sonar.key>
 			<sonar.projectName>JenkinsTest</sonar.projectName>
 			<sonar.projectVersion>1.0</sonar.projectVersion>
-			<sonar.test.exclusions>**/test/**/*.*</sonar.test.exclusions>
-			<sonar.exclusions>**/ai/**/*.*,**/jdbc/**/*.*,**/mpt/**/*.*,**/jcr/**/*.*,**/JDBC*</sonar.exclusions>
+			<sonar.login>admin</sonar.login>
+			<sonar.password>admin</sonar.password>
 		      </properties>
 		  </profile>			
 	</profiles>
